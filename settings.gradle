@@ -1,0 +1,2 @@
+rootProject.name='Wanandroid_kotlin'
+include ':app'
