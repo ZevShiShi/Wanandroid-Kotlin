@@ -5,6 +5,7 @@ import com.zev.wanandroid.mvp.model.base.BaseEntity
 import com.zev.wanandroid.mvp.model.entity.BannerEntity
 import com.zev.wanandroid.mvp.model.entity.ChapterEntity
 import com.zev.wanandroid.mvp.model.entity.ChapterPageEntity
+import com.zev.wanandroid.mvp.model.entity.ProTabEntity
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -54,5 +55,19 @@ interface MainService {
         @Query("link") link: String
     )
             : Observable<BaseEntity<Any>>
+
+
+    /**
+     * 获取项目tab
+     */
+    @GET("project/tree/json")
+    fun getProTab(): Observable<BaseArrayEntity<ProTabEntity>>
+
+    /**
+     * 获取项目
+     */
+    @GET("project/list/{page}/json")
+    fun getPro(@Path("page") page: Int, @Query("cid") id: Int)
+            : Observable<BaseEntity<ChapterPageEntity>>
 
 }

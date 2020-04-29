@@ -7,6 +7,7 @@ import com.jess.arms.http.imageloader.ImageLoader
 import com.jess.arms.integration.AppManager
 import com.jess.arms.mvp.BasePresenter
 import com.zev.wanandroid.app.utils.RxUtils
+import com.zev.wanandroid.mvp.base.BaseErrorHandleSubscriber
 import com.zev.wanandroid.mvp.contract.HomeContract
 import com.zev.wanandroid.mvp.model.base.BaseArrayEntity
 import com.zev.wanandroid.mvp.model.base.BaseEntity
@@ -66,8 +67,9 @@ class HomePresenter @Inject constructor(model: HomeContract.Model?, rootView: Ho
         mModel.getHomeChapter(page)
             .compose(RxUtils.applySchedulers(mRootView))
             .subscribe(object :
-                ErrorHandleSubscriber<BaseEntity<ChapterPageEntity>>(mErrorHandler) {
+                BaseErrorHandleSubscriber<BaseEntity<ChapterPageEntity>>(mErrorHandler,mRootView) {
                 override fun onNext(t: BaseEntity<ChapterPageEntity>) {
+                    super.onNext(t)
                     if (t.isSuccess() && t.hasData()) {
                         mRootView.getHomeChapter(t.data)
                     }
@@ -101,11 +103,6 @@ class HomePresenter @Inject constructor(model: HomeContract.Model?, rootView: Ho
                     if (t.isSuccess()) {
                         mRootView.unCollectSuccess()
                     }
-                }
-
-                override fun onError(t: Throwable) {
-                    super.onError(t)
-                    ToastUtils.showShort(t.cause?.message)
                 }
             })
     }

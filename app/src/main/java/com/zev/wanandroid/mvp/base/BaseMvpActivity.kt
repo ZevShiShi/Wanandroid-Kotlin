@@ -2,6 +2,7 @@ package com.zev.wanandroid.mvp.base
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.AttributeSet
@@ -14,6 +15,7 @@ import androidx.annotation.Nullable
 import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.LogUtils
 import com.jess.arms.base.delegate.IActivity
 import com.jess.arms.integration.cache.Cache
 import com.jess.arms.integration.cache.CacheType
@@ -25,11 +27,14 @@ import com.trello.rxlifecycle2.android.ActivityEvent
 import com.zev.wanandroid.R
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.Subject
+import me.bakumon.statuslayoutmanager.library.OnStatusChildClickListener
+import me.bakumon.statuslayoutmanager.library.StatusLayoutManager
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity
 import javax.inject.Inject
 
 abstract class BaseMvpActivity<P : IPresenter> : SwipeBackActivity(), IActivity,
-    ActivityLifecycleable {
+    ActivityLifecycleable, BaseIView {
+    private var statusLayoutManager: StatusLayoutManager? = null
 
     private val mLifecycleSubject: BehaviorSubject<ActivityEvent> = BehaviorSubject.create()
 
@@ -52,6 +57,57 @@ abstract class BaseMvpActivity<P : IPresenter> : SwipeBackActivity(), IActivity,
         return mCache as Cache<String, Any>
     }
 
+
+    override fun showEmptyLayout() {
+        statusLayoutManager?.showEmptyLayout()
+    }
+
+    override fun showSuccessLayout() {
+        statusLayoutManager?.showSuccessLayout()
+    }
+
+    override fun showErrorLayout() {
+        statusLayoutManager?.showErrorLayout()
+    }
+
+    override fun showLoading() {
+        statusLayoutManager?.showLoadingLayout()
+    }
+
+    override fun hideLoading() {
+
+    }
+
+    protected open fun reloadingData() {
+
+    }
+
+    /**
+     * 外部调用添加状态布局
+     */
+    protected fun initStatusLayoutManager(rootView: View) {
+        statusLayoutManager = StatusLayoutManager.Builder(rootView)
+            .setDefaultLoadingText("拼命加载中...")
+            .setDefaultEmptyImg(R.drawable.empty_icon)
+            .setDefaultErrorText(R.string.status_layout_manager_error)
+            .setDefaultErrorImg(R.drawable.empty_icon)
+            .setDefaultLayoutsBackgroundColor(Color.WHITE)
+            .setOnStatusChildClickListener(object : OnStatusChildClickListener {
+                override fun onErrorChildClick(view: View?) {
+                    reloadingData()
+                }
+
+                override fun onEmptyChildClick(view: View?) {
+
+                }
+
+                override fun onCustomerChildClick(view: View?) {
+
+                }
+
+            })
+            .build()
+    }
 
     @NonNull
     override fun provideLifecycleSubject(): Subject<ActivityEvent> {

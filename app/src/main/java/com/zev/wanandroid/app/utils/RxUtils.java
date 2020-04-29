@@ -1,7 +1,12 @@
 package com.zev.wanandroid.app.utils;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.jess.arms.mvp.IView;
 import com.jess.arms.utils.RxLifecycleUtils;
+import com.zev.wanandroid.mvp.base.BaseIView;
+import com.zev.wanandroid.mvp.contract.ProContract;
+import com.zev.wanandroid.mvp.model.base.BaseArrayEntity;
+import com.zev.wanandroid.mvp.model.base.BaseEntity;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableTransformer;
@@ -30,22 +35,18 @@ public class RxUtils {
         return new ObservableTransformer<T, T>() {
             @Override
             public Observable<T> apply(Observable<T> observable) {
+                //隐藏进度条
                 return observable.subscribeOn(Schedulers.io())
-                        .doOnSubscribe(new Consumer<Disposable>() {
-                            @Override
-                            public void accept(@NonNull Disposable disposable) throws Exception {
-                                view.showLoading();//显示进度条
-                            }
+                        .doOnSubscribe(disposable -> {
+//                            view.showLoading();//显示进度条
                         })
                         .subscribeOn(AndroidSchedulers.mainThread())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .doFinally(new Action() {
-                            @Override
-                            public void run() {
-                                view.hideLoading();//隐藏进度条
-                            }
+                        .doFinally(view::hideLoading).doOnNext(t -> {
+//                            view.hideLoading();
                         }).compose(RxLifecycleUtils.bindToLifecycle(view));
             }
         };
     }
+
 }

@@ -12,6 +12,7 @@ import com.zev.wanandroid.mvp.contract.MainContract
 import com.zev.wanandroid.mvp.presenter.MainPresenter
 import com.zev.wanandroid.mvp.ui.adapter.MainPagerAdapter
 import com.zev.wanandroid.mvp.ui.fragment.HomeFragment
+import com.zev.wanandroid.mvp.ui.fragment.ProFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseMvpActivity<MainPresenter>(), MainContract.View {
@@ -19,9 +20,9 @@ class MainActivity : BaseMvpActivity<MainPresenter>(), MainContract.View {
 
     private lateinit var mAdapter: MainPagerAdapter
 
-    private val fragmentList = arrayListOf<Fragment>(
+    private val fragmentList = arrayListOf(
         HomeFragment.getInstance(),
-        HomeFragment.getInstance(),
+        ProFragment.getInstance(),
         HomeFragment.getInstance(),
         HomeFragment.getInstance()
     )
@@ -29,10 +30,8 @@ class MainActivity : BaseMvpActivity<MainPresenter>(), MainContract.View {
     private val titles = arrayOf("首页", "项目", "体系", "干货")
 
     override fun initData(savedInstanceState: Bundle?) {
-        mAdapter = MainPagerAdapter(
-            supportFragmentManager, fragmentList
-            , FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
-        )
+        mAdapter = MainPagerAdapter(supportFragmentManager)
+        mAdapter.updateFragment(fragmentList)
         vpMain.adapter = mAdapter
         mainTab.setViewPager(vpMain, titles)
         vpMain.addOnPageChangeListener(object : OnPageChangeListener {

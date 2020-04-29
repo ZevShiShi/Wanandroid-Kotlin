@@ -95,12 +95,11 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), HomeContract.View {
         mAdapter.header = true
     }
 
-    override fun showMessage(message: String) {
-        TODO("Not yet implemented")
-    }
+
 
     override fun lazyLoadData() {
         LogUtils.d("lazyLoadData")
+        initStatusLayoutManager(rvHome)
         mAdapter = ChapterAdapter(R.layout.home_item)
         rvHome.layoutManager = LinearLayoutManager(activity)
         mAdapter.setEnableLoadMore(true)
@@ -133,7 +132,6 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), HomeContract.View {
                 } else {
                     mPresenter?.unCollectChapter(chapter.id)
                 }
-
                 chapter.collect = like
                 mAdapter.refreshNotifyItemChanged(pos)
             }
@@ -142,14 +140,18 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), HomeContract.View {
 
 
         refreshLayout.setOnRefreshListener {
-            mAdapter.data.clear()
-            mPresenter?.getBanner()
-            mPresenter?.getChapterTop()
-            mPresenter?.getHomeChapter(page = 0)
+            refreshData()
         }
         mPresenter?.getBanner()
         mPresenter?.getChapterTop()
         mPresenter?.getHomeChapter(page)
+    }
+
+    private fun refreshData() {
+        mAdapter.data.clear()
+        mPresenter?.getBanner()
+        mPresenter?.getChapterTop()
+        mPresenter?.getHomeChapter(page = 0)
     }
 
     companion object {
@@ -168,6 +170,7 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), HomeContract.View {
     }
 
     override fun initData(savedInstanceState: Bundle?) {
+
     }
 
     override fun setData(data: Any?) {
@@ -179,6 +182,12 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), HomeContract.View {
         savedInstanceState: Bundle?
     ): View {
         return inflater.inflate(R.layout.fragment_home, container, false)
+    }
+
+
+    override fun reloadingData() {
+        super.reloadingData()
+        refreshData()
     }
 
 }

@@ -80,7 +80,7 @@ dependencies {
     implementation rootProject.ext.dependencies["fabbutton"]
     implementation rootProject.ext.dependencies["agentweb"]
     implementation rootProject.ext.dependencies["SmartRefreshLayout"]
-//    implementation rootProject.ext.dependencies["eventbus"]
+    implementation rootProject.ext.dependencies["StatusLayoutManager"]
 
     //test
     debugImplementation rootProject.ext.dependencies["canary-debug"]

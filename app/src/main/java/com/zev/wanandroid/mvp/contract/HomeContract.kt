@@ -2,6 +2,7 @@ package com.zev.wanandroid.mvp.contract
 
 import com.jess.arms.mvp.IModel
 import com.jess.arms.mvp.IView
+import com.zev.wanandroid.mvp.base.BaseIView
 import com.zev.wanandroid.mvp.model.base.BaseArrayEntity
 import com.zev.wanandroid.mvp.model.base.BaseEntity
 import com.zev.wanandroid.mvp.model.entity.BannerEntity
@@ -10,7 +11,7 @@ import com.zev.wanandroid.mvp.model.entity.ChapterPageEntity
 import io.reactivex.Observable
 
 interface HomeContract {
-    interface View : IView {
+    interface View : BaseIView {
         fun getBanner(entities: List<BannerEntity>)
 
         fun getChapterTop(entities: List<ChapterEntity>)
