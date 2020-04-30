@@ -2,10 +2,7 @@ package com.zev.wanandroid.mvp.model.api.service
 
 import com.zev.wanandroid.mvp.model.base.BaseArrayEntity
 import com.zev.wanandroid.mvp.model.base.BaseEntity
-import com.zev.wanandroid.mvp.model.entity.BannerEntity
-import com.zev.wanandroid.mvp.model.entity.ChapterEntity
-import com.zev.wanandroid.mvp.model.entity.ChapterPageEntity
-import com.zev.wanandroid.mvp.model.entity.ProTabEntity
+import com.zev.wanandroid.mvp.model.entity.*
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -70,4 +67,9 @@ interface MainService {
     fun getPro(@Path("page") page: Int, @Query("cid") id: Int)
             : Observable<BaseEntity<ChapterPageEntity>>
 
+    /**
+     * 体系数据
+     */
+    @GET("tree/json")
+    fun getSys():Observable<BaseArrayEntity<SysEntity>>
 }

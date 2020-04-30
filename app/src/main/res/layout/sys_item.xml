@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llUnSelect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tvUnSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxEms="6"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            tools:text="飒飒飒飒飒飒撒飒飒飒飒飒飒撒" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llSelect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingTop="15dp"
+        android:paddingEnd="15dp"
+        android:visibility="gone"
+        android:paddingBottom="15dp">
+
+        <View
+            android:layout_width="4dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="10dp"
+            android:background="@color/color_b21026" />
+
+        <TextView
+            android:id="@+id/tvSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxEms="6"
+            android:maxLines="1"
+            android:textStyle="bold"
+            android:textColor="@color/color_b21026"
+            android:textSize="14sp"
+            tools:text="飒飒飒飒飒飒飒飒撒" />
+    </LinearLayout>
+
+
+</LinearLayout>

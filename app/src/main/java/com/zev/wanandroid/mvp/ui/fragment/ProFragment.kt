@@ -29,13 +29,6 @@ class ProFragment : BaseMvpFragment<ProPresenter>(), ProContract.View {
         }
     }
 
-    override fun initView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.fragment_pro, container, false)
-    }
 
     override fun lazyLoadData() {
         initStatusLayoutManager(llRoot)
@@ -69,5 +62,9 @@ class ProFragment : BaseMvpFragment<ProPresenter>(), ProContract.View {
         mAdapter?.updateFragment(fragmentList)
         vpPro.adapter = mAdapter
         proTab.setViewPager(vpPro, listTab.toTypedArray())
+    }
+
+    override fun getLayoutId(): Int {
+      return R.layout.fragment_pro
     }
 }

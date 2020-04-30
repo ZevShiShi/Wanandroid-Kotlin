@@ -93,6 +93,16 @@ abstract class BaseMvpFragment<P : IPresenter> : BaseFragment<P>(), BaseIView {
             .build()
     }
 
+    override fun initView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return inflater.inflate(getLayoutId(), container, false)
+    }
+
+    abstract fun getLayoutId(): Int
+
     override fun showMessage(message: String) {
     }
 

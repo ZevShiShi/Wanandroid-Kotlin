@@ -13,6 +13,7 @@ import com.zev.wanandroid.mvp.presenter.MainPresenter
 import com.zev.wanandroid.mvp.ui.adapter.MainPagerAdapter
 import com.zev.wanandroid.mvp.ui.fragment.HomeFragment
 import com.zev.wanandroid.mvp.ui.fragment.ProFragment
+import com.zev.wanandroid.mvp.ui.fragment.SysFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseMvpActivity<MainPresenter>(), MainContract.View {
@@ -23,7 +24,7 @@ class MainActivity : BaseMvpActivity<MainPresenter>(), MainContract.View {
     private val fragmentList = arrayListOf(
         HomeFragment.getInstance(),
         ProFragment.getInstance(),
-        HomeFragment.getInstance(),
+        SysFragment.getInstance(),
         HomeFragment.getInstance()
     )
 

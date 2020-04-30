@@ -86,13 +86,6 @@ class ProChildFragment : BaseMvpFragment<ProChildPresenter>(), ProChildContract.
         mPresenter?.getPro(page, cid)
     }
 
-    override fun initView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.fragment_pro_child, container, false)
-    }
 
     override fun getPro(entity: ChapterPageEntity) {
         total = entity.total
@@ -102,5 +95,9 @@ class ProChildFragment : BaseMvpFragment<ProChildPresenter>(), ProChildContract.
             mAdapter?.addData(entity.datas)
         }
         mAdapter?.loadMoreComplete()
+    }
+
+    override fun getLayoutId(): Int {
+       return R.layout.fragment_pro_child
     }
 }
