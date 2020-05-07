@@ -10,4 +10,5 @@ data class SysEntity(
     val userControlSetTop: Boolean,
     val visible: Int,
     var select:Boolean = false
+
 )

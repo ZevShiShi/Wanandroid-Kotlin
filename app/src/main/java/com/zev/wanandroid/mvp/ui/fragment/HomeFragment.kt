@@ -108,7 +108,7 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), HomeContract.View {
                 if (mAdapter.data.size >= total) {
                     mAdapter.loadMoreEnd()
                 } else {
-                    mPresenter?.getHomeChapter(++page)
+                    mPresenter?.getHomeChapter(++page,true)
                 }
             }, 1000)
 
@@ -144,14 +144,14 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), HomeContract.View {
         }
         mPresenter?.getBanner()
         mPresenter?.getChapterTop()
-        mPresenter?.getHomeChapter(page)
+        mPresenter?.getHomeChapter(page,false)
     }
 
     private fun refreshData() {
         mAdapter.data.clear()
         mPresenter?.getBanner()
         mPresenter?.getChapterTop()
-        mPresenter?.getHomeChapter(page = 0)
+        mPresenter?.getHomeChapter(page = 0, loadMore = false)
     }
 
     companion object {

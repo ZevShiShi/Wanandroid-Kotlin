@@ -63,11 +63,11 @@ class HomePresenter @Inject constructor(model: HomeContract.Model?, rootView: Ho
     }
 
 
-    fun getHomeChapter(page: Int) {
+    fun getHomeChapter(page: Int,loadMore:Boolean) {
         mModel.getHomeChapter(page)
             .compose(RxUtils.applySchedulers(mRootView))
             .subscribe(object :
-                BaseErrorHandleSubscriber<BaseEntity<ChapterPageEntity>>(mErrorHandler,mRootView) {
+                BaseErrorHandleSubscriber<BaseEntity<ChapterPageEntity>>(mErrorHandler,mRootView,loadMore) {
                 override fun onNext(t: BaseEntity<ChapterPageEntity>) {
                     super.onNext(t)
                     if (t.isSuccess() && t.hasData()) {

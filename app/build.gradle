@@ -14,6 +14,7 @@ android {
     }
 
     defaultConfig {
+        multiDexEnabled true
         applicationId "com.zev.wanandroid"
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
@@ -81,6 +82,8 @@ dependencies {
     implementation rootProject.ext.dependencies["agentweb"]
     implementation rootProject.ext.dependencies["SmartRefreshLayout"]
     implementation rootProject.ext.dependencies["StatusLayoutManager"]
+    implementation rootProject.ext.dependencies["multidex"]
+    implementation rootProject.ext.dependencies["disklrucache"]
 
     //test
     debugImplementation rootProject.ext.dependencies["canary-debug"]

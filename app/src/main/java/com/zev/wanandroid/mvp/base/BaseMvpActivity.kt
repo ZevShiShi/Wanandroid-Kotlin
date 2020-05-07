@@ -208,4 +208,7 @@ abstract class BaseMvpActivity<P : IPresenter> : SwipeBackActivity(), IActivity,
         window.decorView.systemUiVisibility = vis
     }
 
+
+    override fun showMessage(message: String) {
+    }
 }

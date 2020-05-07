@@ -10,6 +10,7 @@ class SysChildAdapter(layoutResId: Int) :
     BaseQuickAdapter<SysChildEntity, BaseViewHolder>(layoutResId) {
 
     override fun convert(helper: BaseViewHolder?, item: SysChildEntity?) {
+        helper?.setBackgroundColor(R.id.llRoot,mContext.resources.getColor(android.R.color.transparent))
         helper?.setText(R.id.tvUnSelect, item?.name)
     }
 }

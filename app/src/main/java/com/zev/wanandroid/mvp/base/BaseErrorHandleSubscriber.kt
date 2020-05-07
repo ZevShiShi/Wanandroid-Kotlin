@@ -1,18 +1,29 @@
 package com.zev.wanandroid.mvp.base
 
-import com.blankj.utilcode.util.LogUtils
 import com.zev.wanandroid.mvp.model.base.BaseArrayEntity
 import com.zev.wanandroid.mvp.model.base.BaseEntity
 import io.reactivex.disposables.Disposable
 import me.jessyan.rxerrorhandler.core.RxErrorHandler
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber
 
-open class BaseErrorHandleSubscriber<T>(rxErrorHandler: RxErrorHandler?, private var view: BaseIView?) :
+open class BaseErrorHandleSubscriber<T>(
+    rxErrorHandler: RxErrorHandler?,
+    private var view: BaseIView?
+) :
     ErrorHandleSubscriber<T>(rxErrorHandler) {
+
+    private var loadMore = false
+
+    constructor(rxErrorHandler: RxErrorHandler?, view: BaseIView?, loadMore: Boolean)
+            : this(rxErrorHandler, view) {
+        this.loadMore = loadMore
+    }
 
     override fun onSubscribe(d: Disposable) {
         super.onSubscribe(d)
-        view?.showLoading()
+        if (!loadMore) {
+            view?.showLoading()
+        }
     }
 
     override fun onNext(t: T) {

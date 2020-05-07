@@ -68,8 +68,16 @@ interface MainService {
             : Observable<BaseEntity<ChapterPageEntity>>
 
     /**
-     * 体系数据
+     * 体系数据tab
      */
     @GET("tree/json")
     fun getSys():Observable<BaseArrayEntity<SysEntity>>
+
+    /**
+     * 体系数据详情
+     */
+    @GET("article/list/{page}/json")
+    fun getSysDetail(@Path("page") page: Int, @Query("cid") id: Int)
+            : Observable<BaseEntity<ChapterPageEntity>>
+
 }

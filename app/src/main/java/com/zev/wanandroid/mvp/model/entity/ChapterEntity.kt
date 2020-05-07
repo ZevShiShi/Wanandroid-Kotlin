@@ -34,4 +34,12 @@ data class ChapterEntity(
     val zan: Int,
     var showTop: Boolean = false
 
-)
+){
+
+    fun getUser():String {
+        if (shareUser.isEmpty()) {
+            return author
+        }
+        return shareUser
+    }
+}

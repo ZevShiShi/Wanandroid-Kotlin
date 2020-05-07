@@ -117,6 +117,8 @@ ext {
             "utilcode"                 : "com.blankj:utilcode:1.22.10",
             "disklrucache"             : "com.jakewharton:disklrucache:2.0.2",
             "StatusLayoutManager"      : "com.github.Bakumon:StatusLayoutManager:1.0.4",
+            "multidex"                 : "com.android.support:multidex:1.0.3",
+            "disklrucache"             : "com.jakewharton:disklrucache:2.0.2",
 
             //test
             "junit"                    : "junit:junit:4.12",
