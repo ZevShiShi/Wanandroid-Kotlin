@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zev.wanandroid.mvp.ui.view.LikeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zev.wanandroidex.mvp.ui.view.LikeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/likeLayout"
@@ -39,4 +39,4 @@
     </FrameLayout>
 
 
-</com.zev.wanandroid.mvp.ui.view.LikeLayout>
+</com.zev.wanandroidex.mvp.ui.view.LikeLayout>

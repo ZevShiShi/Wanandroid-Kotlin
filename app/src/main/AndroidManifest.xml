@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zev.wanandroid">
+    package="com.zev.wanandroidex">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -38,7 +38,7 @@
             android:name="design_height_in_dp"
             android:value="640" /> <!-- arms配置 -->
         <meta-data
-            android:name="com.zev.wanandroid.app.GlobalConfiguration"
+            android:name="com.zev.wanandroidex.app.GlobalConfiguration"
             android:value="ConfigModule" />
     </application>
 
